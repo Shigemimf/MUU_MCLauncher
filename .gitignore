@@ -27,3 +27,9 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+.idea/vcs.xml
+.idea/workspace.xml
+.idea/workspace.xml
+logs/2025-02-18-1.log.gz
+logs/latest.log
+.idea/workspace.xml
