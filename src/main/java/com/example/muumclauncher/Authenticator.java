@@ -22,7 +22,6 @@ public class Authenticator {
             String response = scanner.useDelimiter("\\A").next();
             scanner.close();
 
-            // Check for successful authentication
             return response.contains("\"accessToken\"");
         } catch (IOException e) {
             e.printStackTrace();
