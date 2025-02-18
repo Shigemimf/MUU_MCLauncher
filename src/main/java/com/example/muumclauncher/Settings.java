@@ -13,10 +13,16 @@ public class Settings {
     }
 
     public void loadSettings() {
-        try (InputStream input = new FileInputStream(SETTINGS_FILE)) {
-            properties.load(input);
-        } catch (IOException e) {
-            e.printStackTrace();
+        File file = new File(SETTINGS_FILE);
+        if (file.exists()) {
+            try (InputStream input = new FileInputStream(file)) {
+                properties.load(input);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Settings file not found. Creating a new one.");
+            saveSettings();
         }
     }
 
