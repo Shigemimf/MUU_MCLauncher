@@ -1,5 +1,6 @@
 package main.java.com.example.muumclauncher;
 
+import javax.swing.JOptionPane;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -22,9 +23,11 @@ public class Authenticator {
             String response = scanner.useDelimiter("\\A").next();
             scanner.close();
 
+            // Check for successful authentication
             return response.contains("\"accessToken\"");
         } catch (IOException e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Failed to connect to authentication server: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
     }
