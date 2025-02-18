@@ -1,0 +1,38 @@
+package main.java.com.example.muumclauncher;
+
+import java.io.*;
+import java.util.Properties;
+
+public class Settings {
+    private static final String SETTINGS_FILE = System.getProperty("user.home") + "/.muumclauncher/settings.properties";
+    private Properties properties;
+
+    public Settings() {
+        properties = new Properties();
+        loadSettings();
+    }
+
+    public void loadSettings() {
+        try (InputStream input = new FileInputStream(SETTINGS_FILE)) {
+            properties.load(input);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void saveSettings() {
+        try (OutputStream output = new FileOutputStream(SETTINGS_FILE)) {
+            properties.store(output, null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String getSetting(String key) {
+        return properties.getProperty(key);
+    }
+
+    public void setSetting(String key, String value) {
+        properties.setProperty(key, value);
+    }
+}
