@@ -12,6 +12,7 @@ public class Authenticator {
         try {
             URL url = new URL("https://authserver.mojang.com/authenticate");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type", "application/json");
             connection.setDoOutput(true);
@@ -23,7 +24,6 @@ public class Authenticator {
             String response = scanner.useDelimiter("\\A").next();
             scanner.close();
 
-            // Check for successful authentication
             return response.contains("\"accessToken\"");
         } catch (IOException e) {
             e.printStackTrace();

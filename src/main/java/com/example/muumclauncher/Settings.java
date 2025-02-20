@@ -27,7 +27,13 @@ public class Settings {
     }
 
     public void saveSettings() {
-        try (OutputStream output = new FileOutputStream(SETTINGS_FILE)) {
+        File file = new File(SETTINGS_FILE);
+        File parentDir = file.getParentFile();
+        if (!parentDir.exists()) {
+            parentDir.mkdirs();
+        }
+
+        try (OutputStream output = new FileOutputStream(file)) {
             properties.store(output, null);
         } catch (IOException e) {
             e.printStackTrace();
